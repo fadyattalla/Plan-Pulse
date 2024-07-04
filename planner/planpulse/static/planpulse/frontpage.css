@@ -1,0 +1,149 @@
+body {
+    background-color: black;
+    background-size: cover;
+    visibility: hidden;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.bg-loaded {
+    background-image: url("https://i.ibb.co/nm5xr6P/bgimg.jpg");
+    visibility: visible;
+}
+
+#app-title {
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    color: red;
+}
+
+#error-msg {
+    width: fit-content;
+    border: 2px solid rgb(24, 24, 24);
+    background-color: rgb(10, 10, 10);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: -10em;
+    margin-left: -20em;
+    animation: moveIn 6s forwards;
+    position: fixed;
+    visibility: hidden;
+    list-style-type: none;
+
+}
+
+.success {
+    color: rgb(0, 160, 0);
+}
+
+.error {
+    color: red;
+}
+
+@keyframes moveIn {
+    0% {
+        margin-left: -20em;
+        visibility: visible;
+    }
+    5% {
+        margin-left: 1em;
+        visibility: visible;
+    }
+    90% {
+        margin-left: 1em;
+        visibility: visible;
+    }
+    95% {
+        margin-left: -20em;
+        visibility: visible;
+    }
+    100% {
+        margin-left: -20em;
+        visibility: hidden;
+    }
+}
+
+
+
+
+#info-div {
+    margin-bottom: 20px;
+}
+
+#info-div, #info-text {
+    background-color: transparent;
+}
+
+#info-text {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.register-wrapper {
+    z-index: 1000;
+    text-align: center;
+    max-width: 750px;
+    margin: 11em auto;
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.9); 
+    border-radius: 20px;
+    box-shadow: 0 0 5px 0 red;
+    animation: shadowAnimate 2s infinite alternate;
+}
+
+
+.register-wrapper form div span, .register-wrapper form div input {
+    background-color: transparent;
+    border: 1px solid grey;
+    color: rgb(255, 255, 255);
+}
+
+.register-wrapper form div span:focus, .register-wrapper form div input:focus {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+}
+
+.register-wrapper #register-btn {
+    transition: background-color 0.4s ease-in-out;
+    border: 1px solid grey;
+}
+
+.login-wrapper {
+    z-index: 1000;
+    text-align: center;
+    max-width: 550px;
+    margin: 12em auto;
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 0 5px 0 red;
+    animation: shadowAnimate 2s infinite alternate;
+}
+
+@keyframes shadowAnimate {
+    0% {
+        box-shadow: 0 0 5px 0 red;
+    }
+    100% {
+        box-shadow: 0 0 15px 5px red;
+    }
+}
+
+.login-wrapper form div span, .login-wrapper form div input {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border: 1px solid grey;
+}
+
+.login-wrapper form div span:focus, .login-wrapper form div input:focus {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+}
+
+.login-wrapper #login-btn {
+    transition: background-color 0.4s ease-in-out;
+    border: 1px solid grey;
+
+}
+

@@ -1,0 +1,133 @@
+{% extends "planpulse/layout.html" %}
+
+{% load static %}
+
+
+
+{% block body %}
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <div id="title-view">
+        <h1 id="app-title">PlanPulse<i style="padding-left: 4px;" class="bi bi-clock-history"></i></h1>
+        <div id="logout">
+            <span><div id="user-data">Welcome, {{ request.user.username }}</div><a href="{% url 'planpulse:logout' %}"><i title="Logout" class="bi bi-box-arrow-in-right"></i></a></span>
+        </div>
+    </div>
+    
+    <div class="body">
+        <div id="projects-view">
+            <div id="proj-view-title">
+                <div id="projects-title">Projects</div>
+                <span style="display: none;" id="create-proj-exist-icon">
+                    <i title="Create a new project" class="bi bi-plus-square"></i>
+                </span>              
+            </div>
+            <div style="display: none;" id="create-proj-icon">
+                <i class="bi bi-plus-circle"></i>
+            </div>
+            <div id="list-wrapper">
+                <ul>
+                </ul>
+            </div>
+        </div>
+    
+        <div id="tasks-view">
+            <div id="backpage-btn">
+                <i class="bi bi-chevron-compact-left"></i>
+            </div>
+            <div id="new-task-project">
+                <div id="project-tasks-title" class="truncate-600"></div>
+                <select id="new-btn" class="form-select">
+                    <option disabled selected>New</option>
+                    <option>Task</option>
+                    <option>Project</option>
+                </select>
+            </div>
+            <div id="tasks-table">
+                <table id="tasks__table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="newproject-view" class="project-modal">
+            <div id="newproject-content" class="project-modal-content">
+                <div class="form-title-exit-icon">
+                    <div id="newproject-title">New project</div>
+                    <div class="forms-exit-icon" id="newproject-exit-icon">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+                </div>
+                <form id="project-creation-form">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-outline-danger" id="proj-create-btn" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="newtask-modal" class="modal">
+            <div id="content-view" class="modal-content">
+                <div class="form-title-exit-icon">
+                    <div id="newtask-title">Add a new task</div>
+                    <div class="forms-exit-icon" id="newtask-exit-icon">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+                </div>
+                <form id="task-creation-form" enctype="multipart/form-data">
+                    <input class="form-control mb-2 mt-3" id="tasknumber" min="0" type="number" step="1" placeholder="No. (Unique)" required autofocus title="Your tasks will be ordered based on the numbers you assign to them.">
+                    <input class="form-control mb-2" id="tasktitle" maxlength="80" type="text" placeholder="Title" required>
+                    <textarea class="form-control mb-2" id="taskdescription" type="textarea" placeholder="Description (Optional)" rows="3" maxlength="1000"></textarea>
+                    <select class="form-select mb-2" id="taskstatus">
+                        <option selected disabled>Select status</option>
+                        <option>Undecided</option>
+                        <option>To Do</option>
+                        <option>In Progress</option>
+                        <option>Done</option>
+                    </select>
+                    <select class="form-select mb-2" id="taskpriority">
+                        <option selected disabled>Select priority</option>
+                        <option>Unspecified</option>
+                        <option>Urgent</option>
+                        <option>High</option>
+                        <option>Medium</option>
+                        <option>Low</option>
+                    </select>
+                    <input class="form-control mb-2" id="taskduedate" type="datetime-local" title="Due Date" placeholder="Select a date and time">
+                    <input class="form-control mb-2" id="taskattachment" type="file">
+                    <input class="form-control mb-3" id="tasknotes" type="text" placeholder="Notes (Optional)" maxlength="250">
+                    <button class="btn btn-outline-primary" id="create-btn" type="submit">Create</button>
+                    <div id="err-msg"></div>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+
+        <div id="edit-view" class="edit-modal">
+            <div id="editview-content" class="edit-modal-content">
+                <div class="form-title-exit-icon" id="editview-header">
+                    <div id="edit-header"></div>
+                    <div class="forms-exit-icon" id="editview-exit-icon">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+                </div>
+                <div id="edit-content">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'planpulse/content.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'planpulse/planpulse.js' %}" type="text/javascript"></script>
+{% endblock %}

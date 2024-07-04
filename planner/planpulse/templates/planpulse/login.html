@@ -1,0 +1,46 @@
+{% extends "planpulse/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    PlanPulse | Login
+{% endblock %}
+
+{% block body %}
+
+    <!--Wait for the background image to load then load the page's content.-->
+    <script>
+        var bgImg = new Image();
+        bgImg.onload = () => {
+            document.body.classList.add('bg-loaded');
+        }
+        bgImg.src = 'https://i.ibb.co/nm5xr6P/bgimg.jpg';
+    </script>
+
+    <div class="container">
+        <div class="login-wrapper">
+            <h1 id="app-title">PlanPulse<i style="padding-left: 4px;" class="bi bi-clock-history"></i></h1>
+            <form action="{% url 'planpulse:login' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Username</span>
+                    <input class="form-control" type="text" name="username" autofocus required>
+                </div>
+                <div class="input-group mb-3">
+                    <span style="padding-right: 17px;" class="input-group-text">Password</span>
+                    <input class="form-control" type="password" name="password" required>
+                </div>
+                
+                <button id="login-btn" class="btn btn-outline-light w-100" type="submit">Login</button>
+                <div id="info-div" style="border-color: grey;" class="input-group-text mt-5">
+                    <span id="info-text" style="border: none;" class="input-group">Not yet a user? <a style="padding-left: 5px; color: red;" href="{% url 'planpulse:register' %}">Register</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'planpulse/frontpage.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
